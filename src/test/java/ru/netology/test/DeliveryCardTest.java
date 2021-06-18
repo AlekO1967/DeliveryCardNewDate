@@ -30,7 +30,7 @@ public class DeliveryCardTest {
     void shouldEnterValidData() {
         $("[data-test-id='city'] input").setValue("Воронеж");
         $("[data-test-id='date'] input").doubleClick();
-        //$("[data-test-id='date'] input").sendKeys(Keys.DELETE);
+        $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
         $("[data-test-id='name'] input").setValue(registrationInfo.getFullName());
         $("[data-test-id='phone'] input").setValue(registrationInfo.getPhoneNumber());
