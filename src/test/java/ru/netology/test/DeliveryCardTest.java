@@ -46,11 +46,11 @@ public class DeliveryCardTest {
         $(byText("Перепланировать"));
         $(withText("Успешно")).shouldBe(visible, Duration.ofSeconds(15));
         $(".notification__content").shouldHave(text((DataGenerator.forwardDate(5))));
-
     }
 
     @Test
     void shouldEnterEmptyCity() {
+        $("[data-test-id='city'] input").setValue("");
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
@@ -75,6 +75,19 @@ public class DeliveryCardTest {
     }
 
     @Test
+    void shouldEnterEmptyName() {
+        $("[data-test-id='city'] input").setValue("Воронеж");
+        $("[data-test-id='date'] input").doubleClick();
+        $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
+        $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
+        $("[data-test-id='name'] input").setValue("");
+        $("[data-test-id='phone'] input").setValue(registrationInfo.getPhoneNumber());
+        $("[data-test-id='agreement']").click();
+        $(byText("Запланировать")).click();
+        $(".input_invalid[data-test-id='name']").shouldHave(text("Поле обязательно для заполнения"));
+    }
+
+    @Test
     void shouldEnterNotValidName() {
         $("[data-test-id='city'] input").setValue("Воронеж");
         $("[data-test-id='date'] input").doubleClick();
@@ -88,19 +101,6 @@ public class DeliveryCardTest {
     }
 
     @Test
-    void shouldEnterNotValidPhone() {
-        $("[data-test-id='city'] input").setValue("Воронеж");
-        $("[data-test-id='date'] input").doubleClick();
-        $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
-        $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
-        $("[data-test-id='name'] input").setValue(registrationInfo.getFullName());
-        $("[data-test-id='phone'] input").setValue("+798012345");
-        $("[data-test-id='agreement']").click();
-        $(byText("Запланировать")).click();
-        $(".input_invalid[data-test-id='phone']").shouldHave(text("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
-    }
-
-    @Test
     void shouldEnterEmptyPhone() {
         $("[data-test-id='city'] input").setValue("Воронеж");
         $("[data-test-id='date'] input").doubleClick();
@@ -111,6 +111,19 @@ public class DeliveryCardTest {
         $("[data-test-id='agreement']").click();
         $(byText("Запланировать")).click();
         $(".input_invalid[data-test-id='phone']").shouldHave(text("Поле обязательно для заполнения"));
+    }
+
+    @Test
+    void shouldEnterNotValidPhone() {
+        $("[data-test-id='city'] input").setValue("Воронеж");
+        $("[data-test-id='date'] input").doubleClick();
+        $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
+        $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
+        $("[data-test-id='name'] input").setValue(registrationInfo.getFullName());
+        $("[data-test-id='phone'] input").setValue("+798012345");
+        $("[data-test-id='agreement']").click();
+        $(byText("Запланировать")).click();
+        $(".input_invalid[data-test-id='phone']").shouldHave(text("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
     }
 
     @Test
