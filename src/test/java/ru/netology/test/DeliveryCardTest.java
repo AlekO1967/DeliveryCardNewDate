@@ -28,7 +28,7 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEnterValidData() {
-        $("[data-test-id='city'] input").setValue("Воронеж");
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
@@ -76,7 +76,7 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEnterEmptyName() {
-        $("[data-test-id='city'] input").setValue("Воронеж");
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
@@ -89,7 +89,7 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEnterNotValidName() {
-        $("[data-test-id='city'] input").setValue("Воронеж");
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
@@ -102,7 +102,7 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEnterEmptyPhone() {
-        $("[data-test-id='city'] input").setValue("Воронеж");
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
@@ -115,7 +115,7 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEnterNotValidPhone() {
-        $("[data-test-id='city'] input").setValue("Воронеж");
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
@@ -128,7 +128,7 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEmptyCheckBox() {
-        $("[data-test-id='city'] input").setValue("Воронеж");
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));

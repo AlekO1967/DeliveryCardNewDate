@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class DataGenerator {
-    public DataGenerator() {
+    private DataGenerator() {
     }
 
     public static String forwardDate(int plusDays) {
@@ -17,6 +17,7 @@ public class DataGenerator {
         return formatter.format(newDate);
     }
 
+
     public static class Registration {
         private Registration() {
         }
@@ -25,8 +26,8 @@ public class DataGenerator {
             Faker faker = new Faker(new Locale("ru"));
             return new RegistrationByCustomerInfo(
                     faker.name().fullName(),
-                    faker.phoneNumber().phoneNumber()
-            );
+                    faker.address().cityName(),
+                    faker.phoneNumber().phoneNumber());
         }
     }
 }
