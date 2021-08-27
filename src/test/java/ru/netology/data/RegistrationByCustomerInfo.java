@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegistrationByCustomerInfo {
-    private String fullName;
+    private String city;
+    private String firstName;
+    private String lastName;
     private String phoneNumber;
-    private String cityName;
 }

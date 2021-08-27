@@ -25,9 +25,10 @@ public class DataGenerator {
         public static RegistrationByCustomerInfo generateByInfo(String locale) {
             Faker faker = new Faker(new Locale("ru"));
             return new RegistrationByCustomerInfo(
-                    faker.name().fullName(),
-                    faker.address().cityName(),
-                    faker.phoneNumber().phoneNumber());
+                    faker.address().city(),
+                    faker.name().firstName(),
+                    faker.name().lastName(),
+                    faker.phoneNumber().cellPhone());
         }
     }
 }

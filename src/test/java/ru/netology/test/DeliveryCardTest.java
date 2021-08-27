@@ -23,17 +23,18 @@ public class DeliveryCardTest {
 
     @BeforeEach
     void setUp() {
+
         open("http://localhost:9999");
     }
 
     @Test
     void shouldEnterValidData() {
-        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCity());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
-        $("[data-test-id='name'] input").setValue(registrationInfo.getFullName());
-        $("[data-test-id='phone'] input").setValue(registrationInfo.getPhoneNumber());
+        $("[data-test-id='name'] input").setValue(registrationInfo.getFirstName() + " " + registrationInfo.getLastName());
+        $("[data-test-id='phone'] input").setValue("+7 " + registrationInfo.getPhoneNumber());
         $("[data-test-id='agreement']").click();
         $(byText("Запланировать")).click();
         $(withText("Успешно")).shouldBe(visible, Duration.ofSeconds(15));
@@ -50,12 +51,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEnterEmptyCity() {
-        $("[data-test-id='city'] input").setValue("");
+        $("[data-test-id='city'] input").setValue(" ");
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
-        $("[data-test-id='name'] input").setValue(registrationInfo.getFullName());
-        $("[data-test-id='phone'] input").setValue(registrationInfo.getPhoneNumber());
+        $("[data-test-id='name'] input").setValue(registrationInfo.getFirstName() + " " + registrationInfo.getLastName());
+        $("[data-test-id='phone'] input").setValue("+7 " + registrationInfo.getPhoneNumber());
         $("[data-test-id='agreement']").click();
         $(byText("Запланировать")).click();
         $(".input_invalid[data-test-id='city']").shouldHave(text("Поле обязательно для заполнения"));
@@ -67,8 +68,8 @@ public class DeliveryCardTest {
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
-        $("[data-test-id='name'] input").setValue(registrationInfo.getFullName());
-        $("[data-test-id='phone'] input").setValue(registrationInfo.getPhoneNumber());
+        $("[data-test-id='name'] input").setValue(registrationInfo.getFirstName() + " " + registrationInfo.getLastName());
+        $("[data-test-id='phone'] input").setValue("+7 " + registrationInfo.getPhoneNumber());
         $("[data-test-id='agreement']").click();
         $(byText("Запланировать")).click();
         $(".input_invalid[data-test-id='city']").shouldHave(text("Доставка в выбранный город недоступна"));
@@ -76,12 +77,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEnterEmptyName() {
-        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCity());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
-        $("[data-test-id='name'] input").setValue("");
-        $("[data-test-id='phone'] input").setValue(registrationInfo.getPhoneNumber());
+        $("[data-test-id='name'] input").setValue(" ");
+        $("[data-test-id='phone'] input").setValue("+7 " + registrationInfo.getPhoneNumber());
         $("[data-test-id='agreement']").click();
         $(byText("Запланировать")).click();
         $(".input_invalid[data-test-id='name']").shouldHave(text("Поле обязательно для заполнения"));
@@ -89,12 +90,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEnterNotValidName() {
-        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCity());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
         $("[data-test-id='name'] input").setValue("Aleksandr Osipov");
-        $("[data-test-id='phone'] input").setValue(registrationInfo.getPhoneNumber());
+        $("[data-test-id='phone'] input").setValue("+7 " + registrationInfo.getPhoneNumber());
         $("[data-test-id='agreement']").click();
         $(byText("Запланировать")).click();
         $(".input_invalid[data-test-id='name']").shouldHave(text("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
@@ -102,12 +103,13 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEnterEmptyPhone() {
-        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCity());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
-        $("[data-test-id='name'] input").setValue(registrationInfo.getFullName());
-        $("[data-test-id='phone'] input").setValue("");
+        $("[data-test-id='name'] input").setValue(registrationInfo.getFirstName() + " "
+                + registrationInfo.getLastName());
+        $("[data-test-id='phone'] input").setValue(" ");
         $("[data-test-id='agreement']").click();
         $(byText("Запланировать")).click();
         $(".input_invalid[data-test-id='phone']").shouldHave(text("Поле обязательно для заполнения"));
@@ -115,11 +117,12 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEnterNotValidPhone() {
-        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCity());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
-        $("[data-test-id='name'] input").setValue(registrationInfo.getFullName());
+        $("[data-test-id='name'] input").setValue(registrationInfo.getFirstName() + " " +
+                registrationInfo.getLastName());
         $("[data-test-id='phone'] input").setValue("+798012345");
         $("[data-test-id='agreement']").click();
         $(byText("Запланировать")).click();
@@ -128,12 +131,13 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEmptyCheckBox() {
-        $("[data-test-id='city'] input").setValue(registrationInfo.getCityName());
+        $("[data-test-id='city'] input").setValue(registrationInfo.getCity());
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
-        $("[data-test-id='name'] input").setValue(registrationInfo.getFullName());
-        $("[data-test-id='phone'] input").setValue(registrationInfo.getPhoneNumber());
+        $("[data-test-id='name'] input").setValue(registrationInfo.getFirstName() + " " +
+                registrationInfo.getLastName());
+        $("[data-test-id='phone'] input").setValue("+7 " + registrationInfo.getPhoneNumber());
         $(byText("Запланировать")).click();
         $(".input_invalid[data-test-id='agreement']").shouldHave(text("Я соглашаюсь с условиями обработки и использования моих персональных данных"));
     }
