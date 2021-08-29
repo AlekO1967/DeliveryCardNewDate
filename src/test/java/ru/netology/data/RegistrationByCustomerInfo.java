@@ -12,4 +12,7 @@ public class RegistrationByCustomerInfo {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+
+    public RegistrationByCustomerInfo(String city) {
+    }
 }
