@@ -31,9 +31,9 @@ public class DataGenerator {
                     faker.phoneNumber().cellPhone());
         }
 
-        public static RegistrationByCustomerInfo generateByInfoCity(String locale) {
+        public static String generateInvaldCity(String locale) {
             Faker faker = new Faker(new Locale("en"));
-            return new RegistrationByCustomerInfo(
+            return new String (
                     faker.address().city());
         }
     }

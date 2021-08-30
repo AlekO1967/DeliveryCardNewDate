@@ -16,12 +16,12 @@ import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.data.DataGenerator.Registration.generateByInfo;
-import static ru.netology.data.DataGenerator.Registration.generateByInfoCity;
+import static ru.netology.data.DataGenerator.Registration.generateInvaldCity;
 
 public class DeliveryCardTest {
 
     RegistrationByCustomerInfo registrationInfo = generateByInfo("ru");
-    RegistrationByCustomerInfo registrationByCustomerInfo = generateByInfoCity("en");
+    String registrationByCustomerInfo = generateInvaldCity ("en");
 
     @BeforeEach
     void setUp() {
@@ -68,7 +68,7 @@ public class DeliveryCardTest {
 
     @Test
     void shouldEnterNotValidCity() {
-        $("[data-test-id='city'] input").setValue(registrationByCustomerInfo.getCity());
+        $("[data-test-id='city'] input").setValue(generateInvaldCity("en"));
         $("[data-test-id='date'] input").doubleClick();
         $("[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(DataGenerator.forwardDate(3));
